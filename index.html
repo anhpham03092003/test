@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thiệp Chúc Mừng Tương Tác</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .card h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .album-container {
+            position: relative;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(1, 1fr);
+            gap: 10px;
+            margin: 0 auto 20px;
+        }
+
+        .frame {
+            position: relative;
+            border: 5px solid white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .frame:hover img {
+            transform: scale(1.1);
+        }
+
+        .frame.active {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 400px;
+            transform: translate(-50%, -50%) scale(1);
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+
+        .frame .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        .frame.active .caption {
+            display: block;
+        }
+
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 5;
+        }
+
+        .backdrop.show {
+            display: block;
+        }
+
+        .progress-bar {
+            height: 5px;
+            width: 100%;
+            background-color: #ddd;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .progress {
+            height: 5px;
+            width: 0;
+            background-color: #007bff;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .progress-bar {
+            height: 5px;
+            width: 100%;
+            background-color: #ddd;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .progress {
+            height: 5px;
+            width: 0;
+            background-color: #007bff;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .next-btn, .prev-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 1.1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .next-btn:hover, .prev-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .prev-btn {
+            background-color: #6c757d; /* Gray color for Previous button */
+        }
+
+        .prev-btn:hover {
+            background-color: #5a6268; /* Darker gray on hover */
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Chúc Mừng Sinh Nhật, [Tên người nhận]!</h1>
+
+    <!-- Giai đoạn 1: Câu chuyện kỷ niệm cá nhân -->
+    <div id="section1" class="section active">
+        <h2>Giai Đoạn 1: Câu Chuyện Của Chúng Ta</h2>
+
+        <div class="album-container">
+            <div class="frame" onclick="enlargeImage(this)">
+                <img src="https://via.placeholder.com/500x300?text=Ảnh+1" alt="Ảnh 1">
+                <div class="caption">Chú thích ảnh 1</div>
+            </div>
+            <div class="frame" onclick="enlargeImage(this)">
+                <img src="https://via.placeholder.com/500x300?text=Ảnh+2" alt="Ảnh 2">
+                <div class="caption">Chú thích ảnh 2</div>
+            </div>
+            <div class="frame" onclick="enlargeImage(this)">
+                <img src="https://via.placeholder.com/500x300?text=Ảnh+3" alt="Ảnh 3">
+                <div class="caption">Chú thích ảnh 3</div>
+            </div>
+        </div>
+
+        <p>Chào [Tên người nhận],</p>
+        <p>Mình không thể quên lần chúng ta cùng nhau đi du lịch vào mùa hè năm ngoái. Những khoảnh khắc đầy ắp tiếng cười và hình ảnh bạn chụp cùng cảnh đẹp khiến mọi người không thể nhịn cười. Những kỷ niệm ấy mãi là dấu ấn đẹp trong lòng mình. Cảm ơn bạn đã luôn là nguồn năng lượng tích cực trong cuộc sống của chúng ta!</p>
+    </div>
+
+    <!-- Giai đoạn 2: Lời chúc của nhà sản xuất -->
+    <div id="section2" class="section">
+        <h2>Giai Đoạn 2: Lời Chúc Từ Chúng Tôi</h2>
+        <p>Chúc mừng sinh nhật [Tên người nhận]!</p>
+        <p>Chúng tôi hy vọng rằng bạn sẽ có một ngày thật tuyệt vời, đầy ắp niềm vui và tiếng cười. Hãy luôn hạnh phúc, thành công và tiếp tục lan tỏa năng lượng tích cực đến mọi người xung quanh.</p>
+    </div>
+
+    <!-- Giai đoạn 3: Sự kiện lịch sử -->
+    <div id="section3" class="section">
+        <h2>Giai Đoạn 3: Ngày Này Trong Lịch Sử</h2>
+        <p>Vào ngày này năm 1945, Bác Hồ đã đọc Tuyên ngôn Độc lập, khai sinh ra nước Việt Nam Dân chủ Cộng hòa. Đây là một sự kiện lịch sử hào hùng, đánh dấu sự tự do của dân tộc sau hàng thế kỷ bị đô hộ. Chúc bạn, sinh ra vào ngày trọng đại này, luôn kiên cường, tự tin và thành công trong cuộc sống!</p>
+    </div>
+
+    <!-- Thanh tiến trình -->
+    <div class="progress-bar">
+        <div id="progress" class="progress"></div>
+    </div>
+
+    <!-- Nút Previous và Next -->
+    <button class="prev-btn" onclick="prevSection()">Previous</button>
+    <button class="next-btn" onclick="nextSection()">Next</button>
+</div>
+
+<script>
+    // Khởi tạo biến cho các phần
+    let currentSection = 1;
+    const totalSections = 3;
+
+    // Hàm hiển thị phần tiếp theo
+    function nextSection() {
+        if (currentSection < totalSections) {
+            document.getElementById('section' + currentSection).classList.remove('active');
+            currentSection++;
+            document.getElementById('section' + currentSection).classList.add('active');
+            updateProgress();
+        }
+    }
+
+    // Hàm hiển thị phần trước đó
+    function prevSection() {
+        if (currentSection > 1) {
+            document.getElementById('section' + currentSection).classList.remove('active');
+            currentSection--;
+            document.getElementById('section' + currentSection).classList.add('active');
+            updateProgress();
+        }
+    }
+
+    // Cập nhật thanh tiến trình
+    function updateProgress() {
+        let progressWidth = (currentSection / totalSections) * 100;
+        document.getElementById('progress').style.width = progressWidth + '%';
+    }
+
+
+    // Khởi tạo Carousel cho album ảnh
+    const backdrop = document.querySelector('.backdrop');
+
+    function enlargeImage(frame) {
+        // Xử lý phóng to ảnh
+        if (!frame.classList.contains('active')) {
+            frame.classList.add('active');
+            backdrop.classList.add('show');
+        } else {
+            frame.classList.remove('active');
+            backdrop.classList.remove('show');
+        }
+    }
+
+    // Đóng ảnh khi bấm vào nền đen (backdrop)
+    backdrop.addEventListener('click', () => {
+        const activeFrame = document.querySelector('.frame.active');
+        if (activeFrame) {
+            activeFrame.classList.remove('active');
+            backdrop.classList.remove('show');
+        }
+    });
+</script>
+
+</body>
+</html>
