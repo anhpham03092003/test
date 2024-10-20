@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffe;
+    font-size: 14px;
+    font-family: '微软雅黑', '宋体', sans-serif;
+    color: #231F20;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+    background: #ffe;
+    font-size: 14px;
+    font-family: '微软雅黑', '宋体', sans-serif;
+    color: #231F20;
+    overflow: hidden; /* Ẩn thanh cuộn nếu có */
+    display: flex;
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    height: 100vh; /* Chiều cao full màn hình */
+}
+
+a {
+    color: #000;
+    font-size: 14px;
+}
+
+#main {
+    width: 100%;
+}
+
+#wrap {
+    position: relative;
+    margin: 0 auto;
+    width: 1100px;
+    height: 680px;
+    margin-top: 10px;
+}
+
+#text {
+    width: 400px;
+    height: 425px;
+    left: 60px;
+    top: 80px;
+    position: absolute;
+}
+
+#code {
+    display: none;
+    font-size: 16px;
+}
+
+#clock-box {
+    position: absolute;
+    left: 60px;
+    top: 550px;
+    font-size: 28px;
+    display: none;
+}
+
+#clock-box a {
+    font-size: 28px;
+    text-decoration: none;
+}
+
+#clock {
+    margin-left: 48px;
+}
+
+#clock .digit {
+    font-size: 64px;
+}
+
+#canvas {
+    margin: 0 auto;
+    width: 1100px;
+    height: 680px;
+}
+
+#error {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 60px;
+    display: none;
+}
+
+.hand {
+    cursor: pointer;
+}
+
+.say {
+    margin-left: 5px;
+}
+
+.space {
+    margin-right: 150px;
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 12px; /* Giảm kích thước font cho màn hình nhỏ */
+    }
+
+    #wrap {
+        width: 90%; /* Giảm chiều rộng của wrap để vừa với màn hình nhỏ */
+        height: auto; /* Cho phép chiều cao tự động */
+        margin-top: 10px;
+    }
+
+    #text {
+        width: 100%; /* Đảm bảo rằng khối văn bản chiếm toàn bộ chiều rộng */
+        left: 0; /* Đặt khối văn bản ở giữa */
+        top: 20px; /* Giảm khoảng cách từ trên xuống */
+        padding: 10px; /* Giảm padding cho màn hình nhỏ */
+        font-size: 14px; /* Điều chỉnh kích thước văn bản */
+    }
+
+    #clock-box {
+        left: 0;
+        top: auto; /* Để đồng hồ nằm dưới nội dung khác */
+        font-size: 20px; /* Giảm kích thước đồng hồ */
+        margin: 20px 0;
+        text-align: center; /* Căn giữa nội dung đồng hồ */
+    }
+
+    #canvas {
+        width: 100%; /* Đảm bảo canvas chiếm toàn bộ chiều rộng */
+        height: auto; /* Chiều cao tự động theo tỷ lệ */
+    }
+
+    .space {
+        margin-right: 50px; /* Giảm khoảng cách cho không gian */
+    }
+
+    .say {
+        font-size: 12px; /* Giảm kích thước văn bản "say" */
+    }
+}
